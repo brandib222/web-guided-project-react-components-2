@@ -9,7 +9,7 @@ export default function PetsList(props) {
       {/* 2- Loop over the data generating a Pet element as you go */}
       {/* What props does the Pet component expect? 
       below is the same as using curly brackets and return*/}
-      {pets.map(pet => <Pet pet = {pet} />)}
+      {pets.map(pet => <Pet pet = {pet} key = {pet.id} />)}
     </div>
   )
 }

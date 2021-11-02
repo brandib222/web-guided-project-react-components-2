@@ -47,17 +47,31 @@ export default function App() {
 
   // STRETCH - Make a helper function that returns
   // a filtered array of friends data (filtering by search term)
+  //dont need to take in any data
+  //trim is a built in method that removes all whitespace
+  //.toLowerCase so it doesn't get tripped up on capitals
+  const getFilteredFriends  = () => {
+    const normalized = searchTerm.trim().toLowerCase();
+    // if they type in a blank string it keeps giving you the whole thing
+    if(!normalized) return friends;
+//filter through friends, make it lower case and check if it's normalized
+    return friends.filter(friend => {
+      //words are just arrays of letters, so you can use .includes to search for a letter
+      return friend.name.toLowerCase().includes(normalized);
+    })
+  }
 
   return (
     <div className='app-friends container'>
       {/* 👉 6- Render the Search component -- capitalize so Javascript knows what's up */}
-    
-      <Search />
+    {/*pass down set search term function */}
+      <Search setSearchTerm = {setSearchTerm}/>
       {/* STRETCH - Changes to the input should update the search term */}
 
       {/* 👉 7- Render the FriendsList component */}
       {/* What prop/props does FriendsList need? */}
-      <FriendsList friends = {friends} changeStatus = {changeStatus} />
+      {/*change to getFilteredFriends so that it changes */}
+      <FriendsList friends = {getFilteredFriends()} changeStatus = {changeStatus} />
     </div>
   )
 }

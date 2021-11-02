@@ -9,6 +9,8 @@ export default function FriendsList(props) {
   // console.log(props.changeStatus); --> gives you access to the props array
 
 //same as below
+
+// destructuring like the is a way to take individual keys out of an object, so you don't have to type props a thousand times
 const{ friends, changeStatus } = props;
 //const friends = props.friends;
 //const changeStatus = props.changeStatus;
@@ -18,7 +20,9 @@ const{ friends, changeStatus } = props;
       {/* 👉 3- We need to loop over the data rendering a Friend as we go */}
       {/* Each friend is going to need a `key` prop and also some other prop with data */}
       { friends.map(fr => {
-        return <Friend friend = {fr} changeStatus = {changeStatus} />
+        // if you get a warning about a key, add key like the one below
+        //friend is the key and fr is the value
+        return <Friend friend = {fr} changeStatus = {changeStatus} key = {fr.id}/>
       })}
     </div>
   )
